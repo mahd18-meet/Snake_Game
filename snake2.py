@@ -128,13 +128,15 @@ def move_snake():
 		food_stamps.pop(food_index)
 		print("Eaten food")
 		make_food()
-		new_stamp()
+		
+		
 	else:
 		remove_tail()
 	
 	
 
 	new_pos_list = set(pos_list)
+	print(new_pos_list,pos_list)
 	if len(new_pos_list) != len(pos_list):
 		print("Game over!")
 		quit()
