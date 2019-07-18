@@ -94,10 +94,14 @@ def make_food():
 
 	food_x = random.randint(min_x,max_x) * SQUARE_SIZE
 	food_y = random.randint(min_y, max_y) * SQUARE_SIZE
-	food.goto(food_x,food_y)
-	food_pos.append(food.pos())
-	new_food_stamp = food.stamp()
-	food_stamps.append(new_food_stamp)
+	food_touple = (food_x, food_y)
+	if food_touple in pos_list:
+		make_food()
+	else:
+		food.goto(food_x,food_y)
+		food_pos.append(food.pos())
+		new_food_stamp = food.stamp()
+		food_stamps.append(new_food_stamp)
 
 
 
@@ -128,7 +132,7 @@ def move_snake():
 		food_stamps.pop(food_index)
 		print("Eaten food")
 		make_food()
-		
+
 		
 	else:
 		remove_tail()
@@ -163,8 +167,12 @@ def move_snake():
 	elif new_y_pos <= DOWN_EDGE:
 		print("GAME OVER")
 		quit()
-	if len(food_stamps) <=1:
+	if len(food_stamps) <=6:
 		make_food()
 	turtle.ontimer(move_snake,TIME_STEP)
 
 move_snake()
+
+
+
+
